@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('chips.index')" :active="request()->routeIs('chips.index')">
-                        {{ __('Chips') }}
+                        {{__('Chips')}}
                     </x-nav-link>
                 </div>
             </div>
@@ -74,7 +74,8 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('chips.index')" :active="request()->routeIs('chips.index')">
-                {{ __('Chips') }}
+                {{__('Chips')}}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

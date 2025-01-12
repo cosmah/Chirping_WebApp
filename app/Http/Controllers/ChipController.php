@@ -15,8 +15,15 @@ class ChipController extends Controller
      */
     public function index(): View
     {
-        //render blade view
-        return view('chips.index');
+        // //render blade view
+        // return view('chips.index');
+
+        //pass chips from every user to our index page
+        return view('chips.index',[
+            //use Eloquent's 'with' method to eager-load every chip's associated user
+            //have also used 'latest' scope to return the records in reverse-chronological order
+            'chips' => Chip::with('user')->latest()->get(),
+        ]);
     }
 
     /**

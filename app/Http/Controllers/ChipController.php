@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Chip;
 use Illuminate\Http\Request;
-// mine
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Gate;
 
 class ChipController extends Controller
 {
@@ -60,17 +60,32 @@ class ChipController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Chip $chip)
+    public function edit(Chip $chip): View
     {
         //
+        Gate::authorize('update', $chip);
+
+        return view('chips.edit', [
+            'chip' => $chip,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chip $chip)
+    public function update(Request $request, Chip $chip): RedirectResponse
     {
         //
+        Gate::authorize('update', $chip);
+
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $chip->update($validated);
+
+
+        return redirect(route('chips.index'));
     }
 
     /**

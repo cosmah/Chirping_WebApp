@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('chips.index')" :active="request()->routeIs('chips.index')">
+                        {{ __('Chips') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -70,6 +73,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('chips.index')" :active="request()->routeIs('chips.index')">
+                {{ __('Chips') }}
         </div>
 
         <!-- Responsive Settings Options -->

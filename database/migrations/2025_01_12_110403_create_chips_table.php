@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('chips', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->cascadeOnDelete();
+            $table->string('message');
             $table->timestamps();
         });
     }

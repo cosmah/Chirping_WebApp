@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\RedirectResponse;
 use App\Models\Chip;
 use Illuminate\Http\Request;
 // mine
@@ -30,11 +30,18 @@ class ChipController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
-    }
+        //validate request
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
 
+        $request->user()->chips()->create($validated);  
+
+        return redirect(route('chips.index'));
+    }
+    
     /**
      * Display the specified resource.
      */
